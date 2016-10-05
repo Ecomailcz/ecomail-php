@@ -1,9 +1,9 @@
 {
-  "name": "filipsedivy/ecomail",
+  "name": "ecomailcz/ecomail",
   "description": "API Wrapper",
   "license": "GNU GPL 3",
   "version": "1.1",
-  "keywords": ["API", "Wrapper"],
+  "keywords": ["API", "Wrapper", "Ecomail", "Newsletter", "Email", "Marketing"],
   "type": "library",
   "time": "2016-10-04",
   "authors": [
