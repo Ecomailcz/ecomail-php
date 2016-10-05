@@ -1,0 +1,25 @@
+{
+  "name": "filipsedivy/ecomail",
+  "description": "API Wrapper",
+  "license": "GNU GPL 3",
+  "version": "1.1",
+  "keywords": ["API", "Wrapper"],
+  "type": "library",
+  "time": "2016-10-04",
+  "authors": [
+    {
+      "name": "Filip Šedivý",
+      "email": "mail@filipsedivy.cz",
+      "homepage": "https://filipsedivy.cz",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": ">=5.3.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "": "src/"
+    }
+  }
+}
