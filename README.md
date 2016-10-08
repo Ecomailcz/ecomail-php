@@ -11,7 +11,9 @@ $ecomail->getListsCollection();
 
 # Seznam dostupných metod
 
-`Všechny metody mají návratový typ: array stdClass string`
+Všechny metody mají návratový typ: `array stdClass string`
+
+Pro více informací prosím navštivte dokumentaci naší API: http://docs.ecomailczv2.apiary.io
 
 ### getListsCollection
 
