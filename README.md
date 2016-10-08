@@ -13,6 +13,8 @@ $ecomail = new Ecomail('API_KEY');
 $ecomail->getListsCollection();
 ```
 
+API klíč naleznete v nastavení vašeho účtu v sekci integrace.
+
 # Seznam dostupných metod
 
 Všechny metody mají návratový typ: `array stdClass string`
