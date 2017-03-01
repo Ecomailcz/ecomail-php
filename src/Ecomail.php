@@ -116,7 +116,7 @@ class Ecomail
      * @return array|stdClass|string
      */
     public function addSubscriber($list_id, array $data){
-        $url = $this->joinString('lists/', $list_id, '/subscriber');
+        $url = $this->joinString('lists/', $list_id, '/subscribe');
         return $this->post($url, $data);
     }
 
