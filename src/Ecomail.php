@@ -125,9 +125,9 @@ class Ecomail
      * @param string $list_id ID listu
      * @return array|stdClass|string
      */
-    public function removeSubscriber($list_id){
+    public function removeSubscriber($list_id, array $data){
         $url = $this->joinString('lists/', $list_id, '/unsubscribe');
-        return $this->delete($url);
+        return $this->delete($url, $data);
     }
 
 
@@ -356,8 +356,8 @@ class Ecomail
      * @param   string  $request Požadavek
      * @return  array|stdClass|string
      */
-    private function delete($request){
-        return $this->send($request, NULL, 'delete');
+    private function delete($request, array $data = []){
+        return $this->send($request, $data, 'delete');
     }
 
     /**
