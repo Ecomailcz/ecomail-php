@@ -295,6 +295,20 @@ class Ecomail
     }
 
 
+    // === Automations ===
+
+
+    /**
+     * @param string $automation_id ID automatizace
+     * @param array $data Data
+     * @return array|stdClass|string
+     */
+    public function triggerAutomation($automation_id, array $data){
+        $url = $this->joinString('pipelines/', $automation_id, '/trigger');
+        return $this->post($url, $data);
+    }
+
+
 
     /**
      * Spojování textu
