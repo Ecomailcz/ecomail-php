@@ -65,3 +65,4 @@ Pro více informací prosím navštivte dokumentaci naší API: http://docs.ecom
 
 ### createNewTransaction
 
+### triggerAutomation
