@@ -293,6 +293,17 @@ class Ecomail
         $url = $this->joinString('tracker/transaction');
         return $this->post($url, $data);
     }
+    
+    /**
+     * @param string $transaction_id ID transakce
+     * @param array $data Data
+     * @return array|stdClass|string
+     */
+    public function updateTransaction($transaction_id, array $data)
+    {
+        $url = $this->joinString('tracker/transaction/', $transaction_id);
+        return $this->put($url, $data);
+    }
 
 
     // === Automations ===
