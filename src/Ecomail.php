@@ -109,6 +109,16 @@ class Ecomail
         return $this->get($url);
     }
 
+    
+    /**
+     * @param string $email Email
+     * @return array|stdClass|string
+    */
+    public function getSubscriberList($email){
+        $url = $this->joinString('subscribers/', $email);
+        return $this->get($url);
+    }
+
 
     /**
      * @param string $list_id ID listu
