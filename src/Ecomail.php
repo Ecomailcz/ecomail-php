@@ -34,7 +34,7 @@ class Ecomail
      * @param string $server Server API
      * @return Ecomail
      */
-    public function __construct($key, $response = self::JSONArray, $server = 'http://api2.ecomailapp.cz')
+    public function __construct($key, $response = self::JSONArray, $server = 'https://api2.ecomailapp.cz')
     {
         $this->key = $key;
         $this->server = $server;
