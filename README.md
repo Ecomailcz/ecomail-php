@@ -19,7 +19,7 @@ API klíč naleznete v nastavení vašeho účtu v sekci integrace.
 
 Všechny metody mají návratový typ: `array stdClass string`
 
-Pro více informací prosím navštivte dokumentaci naší API: http://docs.ecomailczv2.apiary.io
+Pro více informací prosím navštivte dokumentaci naší API: https://ecomailczv2.docs.apiary.io/
 
 ### getListsCollection
 
