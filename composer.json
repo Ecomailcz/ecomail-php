@@ -17,9 +17,15 @@
   "require": {
     "php": ">=5.3.2"
   },
+  "require-dev": {
+    "phpstan/phpstan": "^0.12.9"
+  },
   "autoload": {
     "psr-4": {
       "": "src/"
     }
+  },
+  "scripts": {
+    "phpstan": "vendor/bin/phpstan analyse --level 5 src/"
   }
 }
