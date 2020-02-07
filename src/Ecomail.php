@@ -32,14 +32,12 @@ class Ecomail
      * @param string $key Klíč API
      * @param string $response Návratový typ
      * @param string $server Server API
-     * @return Ecomail
      */
     public function __construct($key, $response = self::JSONArray, $server = 'https://api2.ecomailapp.cz')
     {
         $this->key = $key;
         $this->server = $server;
         $this->response = $response;
-        return $this;
     }
 
 
@@ -256,7 +254,7 @@ class Ecomail
      */
     public function createDomain(array $data){
         $url = $this->joinString('domains');
-        return $this->post($url);
+        return $this->post($url, $data);
     }
 
 
@@ -364,7 +362,7 @@ class Ecomail
      * Pomocná metoda pro POST
      *
      * @param   string      $request    Požadavek
-     * @param   null|array  $data       Zaslaná data
+     * @param   array  $data       Zaslaná data
      * @return  array|stdClass|string
      */
     private function post($request, array $data)
@@ -377,7 +375,7 @@ class Ecomail
      * Pomocná metoda pro PUT
      *
      * @param   string      $request    Požadavek
-     * @param   null|array  $data       Zaslaná data
+     * @param   array  $data       Zaslaná data
      * @return  array|stdClass|string
      */
     private function put($request, array $data = []){
