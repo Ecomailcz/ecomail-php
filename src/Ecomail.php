@@ -131,6 +131,7 @@ class Ecomail
 
     /**
      * @param string $list_id ID listu
+     * @param array $data
      * @return array|stdClass|string
      */
     public function removeSubscriber($list_id, array $data){
@@ -336,8 +337,8 @@ class Ecomail
     */
     private function joinString(){
         $join = "";
-        for($i = 0; $i < func_num_args(); $i++){
-            $join .= func_get_arg($i);
+        foreach (func_get_args() as $arg) {
+           $join .= $arg;
         }
         return $join;
     }
@@ -378,7 +379,7 @@ class Ecomail
      * @param   array  $data       Zaslaná data
      * @return  array|stdClass|string
      */
-    private function put($request, array $data = []){
+    private function put($request, array $data = array()){
         return $this->send($request, $data, 'put');
     }
 
@@ -386,10 +387,11 @@ class Ecomail
     /**
      * Pomocná metoda pro DELETE
      *
-     * @param   string  $request Požadavek
+     * @param string $request Požadavek
+     * @param array $data
      * @return  array|stdClass|string
      */
-    private function delete($request, array $data = []){
+    private function delete($request, array $data = array()){
         return $this->send($request, $data, 'delete');
     }
 
@@ -426,12 +428,10 @@ class Ecomail
         // Check HTTP status code
         if (!curl_errno($ch)) {
             $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-            if ($http_code >= 200 && $http_code <= 299) {
-
-            } else {
-                return [
+            if ($http_code < 200 || $http_code > 299) {
+                return array(
                     'error' => $http_code,
-                ];
+                );
             }
         }
 
@@ -441,7 +441,7 @@ class Ecomail
             case self::JSONArray:
             case self::JSONObject:
                 if (is_object(json_decode($output))) {
-                    $output = json_decode($output, $this->response == self::JSONObject ? false : true);
+                    $output = json_decode($output, $this->response != self::JSONObject);
                 }
                 break;
         }
