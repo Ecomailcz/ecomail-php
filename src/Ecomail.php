@@ -442,7 +442,7 @@ class Ecomail
         switch ($this->response) {
             case self::JSONArray:
             case self::JSONObject:
-                if (is_object(json_decode($output))) {
+                if (is_array(json_decode($output, true))) {
                     $output = json_decode($output, $this->response == self::JSONObject ? false : true);
                 }
                 break;
