@@ -1,11 +1,9 @@
 {
   "name": "ecomailcz/ecomail",
-  "description": "API Wrapper",
+  "description": "Ecomail.cz API Wrapper",
   "license": "GNU GPL 3",
-  "version": "1.1",
   "keywords": ["API", "Wrapper", "Ecomail", "Newsletter", "Email", "Marketing"],
   "type": "library",
-  "time": "2016-10-04",
   "authors": [
     {
       "name": "Filip Šedivý",
@@ -15,11 +13,19 @@
     }
   ],
   "require": {
-    "php": ">=5.3.2"
+    "php": ">=5.3.2",
+    "ext-curl": "*",
+    "ext-json": "*"
+  },
+  "require-dev": {
+    "phpstan/phpstan": "^0.12.9"
   },
   "autoload": {
     "psr-4": {
       "": "src/"
     }
+  },
+  "scripts": {
+    "phpstan": "vendor/bin/phpstan analyse --level 5 src/"
   }
 }
