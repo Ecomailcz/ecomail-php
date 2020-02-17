@@ -1,6 +1,6 @@
 {
   "name": "ecomailcz/ecomail",
-  "description": "API Wrapper",
+  "description": "Ecomail.cz API Wrapper",
   "license": "GNU GPL 3",
   "version": "1.1",
   "keywords": ["API", "Wrapper", "Ecomail", "Newsletter", "Email", "Marketing"],
