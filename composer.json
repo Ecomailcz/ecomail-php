@@ -21,9 +21,7 @@
     "phpstan/phpstan": "^0.12.9"
   },
   "autoload": {
-    "psr-4": {
-      "": "src/"
-    }
+    "classmap": ["src/"]
   },
   "scripts": {
     "phpstan": "vendor/bin/phpstan analyse --level 5 src/"
