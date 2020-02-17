@@ -1,4 +1,6 @@
-PHP wrapper pro práci s Ecomail.cz API
+# PHP wrapper pro práci s Ecomail.cz API
+
+[![Build Status](https://travis-ci.org/Ecomailcz/ecomail-php.svg?branch=master)](https://travis-ci.org/Ecomailcz/ecomail-php)
 
 # Instalace
 
