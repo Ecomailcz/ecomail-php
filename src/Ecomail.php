@@ -420,7 +420,8 @@ class Ecomail
         }
 
         curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-            'key: ' . $this->key
+            'key: ' . $this->key,
+            'Content-Type: application/json'
         ));
 
         $output = curl_exec($ch);
