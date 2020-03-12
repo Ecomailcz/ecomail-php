@@ -160,6 +160,21 @@ class Ecomail
         $url = $this->joinString('lists/', $list_id, '/subscribe-bulk');
         return $this->post($url, $data);
     }
+    
+    
+    // === Subscribers ===
+    
+
+    /**
+     * Remove subscriber from DB (all lists).
+     *
+     * @param string $email Email
+     * @return array|stdClass|string
+     */
+    public function deleteSubscriber(string $email){
+        $url = $this->joinString('subscribers/', $email, '/delete');
+        return $this->delete($url);
+    }
 
 
     // === Campaigns ===
