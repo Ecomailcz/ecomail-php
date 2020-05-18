@@ -225,6 +225,17 @@ class Ecomail
         $url = $this->joinString('campaign/', $campaign_id, '/send');
         return $this->get($url);
     }
+    
+    /**
+     * Získejte statistiku odeslané kampaně.
+     *
+     * @param int $campaign_id ID kampaně
+     * @return array|stdClass|string
+     */
+    public function getCampaignStats($campaign_id){
+        $url = $this->joinString('campaigns/', $campaign_id, '/stats');
+        return $this->get($url);
+    }
 
 
     // === Reports ===
