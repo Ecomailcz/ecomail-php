@@ -5,16 +5,24 @@
 
 # Instalace
 
-```
+```shell
 composer require ecomailcz/ecomail
 ```
 
 # Použití
 
-```
+```php
 $ecomail = new Ecomail('API_KEY');
 $ecomail->getListsCollection();
 ```
+
+Pokud bude server vracet větší množství položek v seznamu, může být odpověď rozdělena do více stránek. Počet dostupných
+stránek server posílá v odpovědi v parametru `last_page`. Pro přístup k dalším stránkám nastavte službě požadovanou stránku:
+
+```php
+$ecomail->page(2)->getListsCollection();
+```
+
 
 API klíč naleznete v nastavení vašeho účtu v sekci integrace.
 
