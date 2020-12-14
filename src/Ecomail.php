@@ -381,7 +381,7 @@ class Ecomail
      */
     private function get($request)
     {
-        return $this->send($request);
+        return $this->send($request, null, 'get');
     }
 
 
@@ -394,7 +394,7 @@ class Ecomail
      */
     private function post($request, array $data)
     {
-        return $this->send($request, $data);
+        return $this->send($request, $data, 'post');
     }
 
 
