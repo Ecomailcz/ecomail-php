@@ -340,8 +340,18 @@ class Ecomail
         return $this->put($url, $data);
     }
 
+	/**
+	 * @param array $data Data
+	 *
+	 * @return array|stdClass|string
+	 */
+	public function addEvent(array $data)
+	{
+		$url = $this->joinString('tracker/events');
+		return $this->post($url, $data);
+	}
 
-    // === Automations ===
+	// === Automations ===
 
 
     /**
