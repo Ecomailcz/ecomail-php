@@ -485,9 +485,15 @@ class Ecomail
         // Check HTTP status code
         if (!curl_errno($ch)) {
             $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+            $content_type = curl_getinfo($ch, CURLINFO_CONTENT_TYPE);
+            $error_message_is_json = $content_type === 'application/json';
+            if ($error_message_is_json) {
+                $output = json_decode($output, null, $options);
+            }
             if ($http_code < 200 || $http_code > 299) {
                 return array(
                     'error' => $http_code,
+                    'message' => $output,
                 );
             }
         }
