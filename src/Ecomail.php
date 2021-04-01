@@ -8,19 +8,16 @@
  */
 class Ecomail
 {
+    const JSONObject = 'jsono';
+    const JSONArray = 'jsona';
+    const PlainText = 'plaintext';
 
-
-    const   JSONObject = 'jsono',
-        JSONArray = 'jsona',
-        PlainText = 'plaintext';
 
     /** @var string $key Klíč API */
     private $key;
 
-
     /** @var string $server Server API */
     private $server;
-
 
     /** @var string $response Návratový typ */
     private $response;
@@ -91,7 +88,8 @@ class Ecomail
      * @param string $list_id ID listu
      * @return array|stdClass|string
      */
-    public function getSubscribers($list_id){
+    public function getSubscribers($list_id)
+    {
         $url = $this->joinString('lists/', $list_id, '/subscribers');
         return $this->get($url);
     }
@@ -101,18 +99,20 @@ class Ecomail
      * @param string $list_id ID listu
      * @param string $email Email
      * @return array|stdClass|string
-    */
-    public function getSubscriber($list_id, $email){
+     */
+    public function getSubscriber($list_id, $email)
+    {
         $url = $this->joinString('lists/', $list_id, '/subscriber/', $email);
         return $this->get($url);
     }
 
-    
+
     /**
      * @param string $email Email
      * @return array|stdClass|string
-    */
-    public function getSubscriberList($email){
+     */
+    public function getSubscriberList($email)
+    {
         $url = $this->joinString('subscribers/', $email);
         return $this->get($url);
     }
@@ -123,7 +123,8 @@ class Ecomail
      * @param array $data Data
      * @return array|stdClass|string
      */
-    public function addSubscriber($list_id, array $data){
+    public function addSubscriber($list_id, array $data)
+    {
         $url = $this->joinString('lists/', $list_id, '/subscribe');
         return $this->post($url, $data);
     }
@@ -134,7 +135,8 @@ class Ecomail
      * @param array $data
      * @return array|stdClass|string
      */
-    public function removeSubscriber($list_id, array $data){
+    public function removeSubscriber($list_id, array $data)
+    {
         $url = $this->joinString('lists/', $list_id, '/unsubscribe');
         return $this->delete($url, $data);
     }
@@ -145,7 +147,8 @@ class Ecomail
      * @param array $data Data
      * @return array|stdClass|string
      */
-    public function updateSubscriber($list_id, array $data){
+    public function updateSubscriber($list_id, array $data)
+    {
         $url = $this->joinString('lists/', $list_id, '/update-subscriber');
         return $this->put($url, $data);
     }
@@ -156,14 +159,14 @@ class Ecomail
      * @param array $data Data
      * @return array|stdClass|string
      */
-    public function addSubscriberBulk($list_id, array $data){
+    public function addSubscriberBulk($list_id, array $data)
+    {
         $url = $this->joinString('lists/', $list_id, '/subscribe-bulk');
         return $this->post($url, $data);
     }
-    
-    
+
+
     // === Subscribers ===
-    
 
     /**
      * Remove subscriber from DB (all lists).
@@ -171,7 +174,8 @@ class Ecomail
      * @param string $email Email
      * @return array|stdClass|string
      */
-    public function deleteSubscriber(string $email){
+    public function deleteSubscriber($email)
+    {
         $url = $this->joinString('subscribers/', $email, '/delete');
         return $this->delete($url);
     }
@@ -179,14 +183,14 @@ class Ecomail
 
     // === Campaigns ===
 
-
     /**
      * @param string $filters Filtr
      * @return array|stdClass|string
      */
-    public function listCampaigns($filters = NULL){
+    public function listCampaigns($filters = null)
+    {
         $url = $this->joinString('campaigns');
-        if(!is_null($filters)){
+        if (!is_null($filters)) {
             $url = $this->joinString($url, '?filters=', $filters);
         }
         return $this->get($url);
@@ -197,7 +201,8 @@ class Ecomail
      * @param array $data Data
      * @return array|stdClass|string
      */
-    public function addCampaign(array $data){
+    public function addCampaign(array $data)
+    {
         $url = $this->joinString('campaigns');
         return $this->post($url, $data);
     }
@@ -208,7 +213,8 @@ class Ecomail
      * @param array $data Data
      * @return array|stdClass|string
      */
-    public function updateCampaign($campaign_id, array $data){
+    public function updateCampaign($campaign_id, array $data)
+    {
         $url = $this->joinString('campaigns/', $campaign_id);
         return $this->put($url, $data);
     }
@@ -221,24 +227,24 @@ class Ecomail
      * @param int $campaign_id ID kampaně
      * @return array|stdClass|string
      */
-    public function sendCampaign($campaign_id){
+    public function sendCampaign($campaign_id)
+    {
         $url = $this->joinString('campaign/', $campaign_id, '/send');
         return $this->get($url);
     }
-    
+
+
     /**
      * Získejte statistiku odeslané kampaně.
      *
      * @param int $campaign_id ID kampaně
      * @return array|stdClass|string
      */
-    public function getCampaignStats($campaign_id){
+    public function getCampaignStats($campaign_id)
+    {
         $url = $this->joinString('campaigns/', $campaign_id, '/stats');
         return $this->get($url);
     }
-
-
-    // === Reports ===
 
 
     // === Automation ===
@@ -246,7 +252,8 @@ class Ecomail
     /**
      * @return array|stdClass|string
      */
-    public function listAutomations(){
+    public function listAutomations()
+    {
         $url = $this->joinString('automation');
         return $this->get($url);
     }
@@ -258,7 +265,8 @@ class Ecomail
      * @param array $data Data
      * @return array|stdClass|string
      */
-    public function createTemplate(array $data){
+    public function createTemplate(array $data)
+    {
         $url = $this->joinString('template');
         return $this->post($url, $data);
     }
@@ -269,7 +277,8 @@ class Ecomail
     /**
      * @return array|stdClass|string
      */
-    public function listDomains(){
+    public function listDomains()
+    {
         $url = $this->joinString('domains');
         return $this->get($url);
     }
@@ -279,17 +288,19 @@ class Ecomail
      * @param array $data Data
      * @return array|stdClass|string
      */
-    public function createDomain(array $data){
+    public function createDomain(array $data)
+    {
         $url = $this->joinString('domains');
         return $this->post($url, $data);
     }
 
 
     /**
-     * @param int     $id     ID domény
+     * @param int $id ID domény
      * @return array|stdClass|string
      */
-    public function deleteDomain($id){
+    public function deleteDomain($id)
+    {
         $url = $this->joinString('domains/', $id);
         return $this->delete($url);
     }
@@ -298,20 +309,22 @@ class Ecomail
     // ===  Transakční e-maily ===
 
     /**
-     * @param   array   $data   Data
+     * @param array $data Data
      * @return  array|stdClass|string
      */
-    public function sendTransactionalEmail(array $data){
+    public function sendTransactionalEmail(array $data)
+    {
         $url = $this->joinString('transactional/send-message');
         return $this->post($url, $data);
     }
 
 
     /**
-     * @param   array   $data   Data
+     * @param array $data Data
      * @return  array|stdClass|string
      */
-    public function sendTransactionalTemplate(array $data){
+    public function sendTransactionalTemplate(array $data)
+    {
         $url = $this->joinString('transactional/send-template');
         return $this->post($url, $data);
     }
@@ -319,16 +332,17 @@ class Ecomail
 
     // === Tracker ===
 
-
     /**
-     * @param   array   $data   Data
+     * @param array $data Data
      * @return  array|stdClass|string
      */
-    public function createNewTransaction(array $data){
+    public function createNewTransaction(array $data)
+    {
         $url = $this->joinString('tracker/transaction');
         return $this->post($url, $data);
     }
-    
+
+
     /**
      * @param string $transaction_id ID transakce
      * @param array $data Data
@@ -353,28 +367,28 @@ class Ecomail
 
 	// === Automations ===
 
-
     /**
      * @param string $automation_id ID automatizace
      * @param array $data Data
      * @return array|stdClass|string
      */
-    public function triggerAutomation($automation_id, array $data){
+    public function triggerAutomation($automation_id, array $data)
+    {
         $url = $this->joinString('pipelines/', $automation_id, '/trigger');
         return $this->post($url, $data);
     }
-
 
 
     /**
      * Spojování textu
      *
      * @return string
-    */
-    private function joinString(){
+     */
+    private function joinString()
+    {
         $join = "";
         foreach (func_get_args() as $arg) {
-           $join .= $arg;
+            $join .= $arg;
         }
         return $join;
     }
@@ -382,40 +396,40 @@ class Ecomail
 
     // === cURL ===
 
-
     /**
      * Pomocná metoda pro GET
      *
-     * @param   string  $request    Požadavek
+     * @param string $request Požadavek
      * @return  array|stdClass|string
      */
     private function get($request)
     {
-        return $this->send($request);
+        return $this->send($request, null, 'get');
     }
 
 
     /**
      * Pomocná metoda pro POST
      *
-     * @param   string      $request    Požadavek
-     * @param   array  $data       Zaslaná data
+     * @param string $request Požadavek
+     * @param array $data Zaslaná data
      * @return  array|stdClass|string
      */
     private function post($request, array $data)
     {
-        return $this->send($request, $data);
+        return $this->send($request, $data, 'post');
     }
 
 
     /**
      * Pomocná metoda pro PUT
      *
-     * @param   string      $request    Požadavek
-     * @param   array  $data       Zaslaná data
+     * @param string $request Požadavek
+     * @param array $data Zaslaná data
      * @return  array|stdClass|string
      */
-    private function put($request, array $data = array()){
+    private function put($request, array $data = array())
+    {
         return $this->send($request, $data, 'put');
     }
 
@@ -427,19 +441,20 @@ class Ecomail
      * @param array $data
      * @return  array|stdClass|string
      */
-    private function delete($request, array $data = array()){
+    private function delete($request, array $data = array())
+    {
         return $this->send($request, $data, 'delete');
     }
 
     /**
      * Odeslání požadavku
      *
-     * @param   string          $request Požadavek
-     * @param   null|array      $data Zaslaná data
-     * @param   null|string     $method Metoda (GET, POST, DELETE, PUT)
+     * @param string $request Požadavek
+     * @param null|array $data Zaslaná data
+     * @param null|string $method Metoda (GET, POST, DELETE, PUT)
      * @return  array|stdClass|string
      */
-    private function send($request, $data = NULL, $method = NULL)
+    private function send($request, $data = null, $method = null)
     {
         $urlRequest = $this->server . '/' . $request;
 
@@ -447,7 +462,7 @@ class Ecomail
         curl_setopt($ch, CURLOPT_URL, $urlRequest);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
-        if(!is_null($method)){
+        if (!is_null($method)) {
             curl_setopt($ch, CURLOPT_CUSTOMREQUEST, strtoupper($method));
         }
 
@@ -456,13 +471,17 @@ class Ecomail
             curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data, $options));
         }
 
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-            'key: ' . $this->key,
-            'Content-Type: application/json'
-        ));
+        curl_setopt(
+            $ch,
+            CURLOPT_HTTPHEADER,
+            array(
+                'key: ' . $this->key,
+                'Content-Type: application/json'
+            )
+        );
 
         $output = curl_exec($ch);
-        
+
         // Check HTTP status code
         if (!curl_errno($ch)) {
             $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
@@ -479,12 +498,11 @@ class Ecomail
             case self::JSONArray:
             case self::JSONObject:
                 if (is_array(json_decode($output, true))) {
-                    $output = json_decode($output, $this->response != self::JSONObject);
+                    $output = json_decode($output, $this->response !== self::JSONObject);
                 }
                 break;
         }
 
         return $output;
     }
-
 }
