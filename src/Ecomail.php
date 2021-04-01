@@ -174,7 +174,7 @@ class Ecomail
      * @param string $email Email
      * @return array|stdClass|string
      */
-    public function deleteSubscriber(string $email)
+    public function deleteSubscriber($email)
     {
         $url = $this->joinString('subscribers/', $email, '/delete');
         return $this->delete($url);
