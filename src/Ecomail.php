@@ -466,9 +466,10 @@ class Ecomail
             curl_setopt($ch, CURLOPT_CUSTOMREQUEST, strtoupper($method));
         }
 
+        $json_options = 0 | (PHP_VERSION_ID >= 70300 ? JSON_THROW_ON_ERROR : 0);
+
         if (is_array($data)) {
-            $options = 0 | (PHP_VERSION_ID >= 70300 ? JSON_THROW_ON_ERROR : 0);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data, $options));
+            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data, $json_options));
         }
 
         curl_setopt(
@@ -488,7 +489,7 @@ class Ecomail
             $content_type = curl_getinfo($ch, CURLINFO_CONTENT_TYPE);
             $error_message_is_json = $content_type === 'application/json';
             if ($error_message_is_json) {
-                $output_decoded = json_decode($output, null, $options);
+                $output_decoded = json_decode($output, null, 512, $json_options);
             }
             if ($http_code < 200 || $http_code > 299) {
                 return array(
