@@ -488,7 +488,7 @@ class Ecomail
             $content_type = curl_getinfo($ch, CURLINFO_CONTENT_TYPE);
             $error_message_is_json = $content_type === 'application/json';
             if ($error_message_is_json) {
-                $output_decoded = json_decode($output, null, $options);
+                $output_decoded = json_decode($output, null, 512, $options);
             }
             if ($http_code < 200 || $http_code > 299) {
                 return array(
