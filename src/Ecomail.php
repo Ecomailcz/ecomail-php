@@ -466,8 +466,8 @@ class Ecomail
             curl_setopt($ch, CURLOPT_CUSTOMREQUEST, strtoupper($method));
         }
 
+        $options = 0 | (PHP_VERSION_ID >= 70300 ? JSON_THROW_ON_ERROR : 0);
         if (is_array($data)) {
-            $options = 0 | (PHP_VERSION_ID >= 70300 ? JSON_THROW_ON_ERROR : 0);
             curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data, $options));
         }
 
