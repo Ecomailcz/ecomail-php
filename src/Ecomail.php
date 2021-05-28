@@ -480,7 +480,7 @@ class Ecomail
             )
         );
 
-        $output = curl_exec($ch);
+        $output_decoded = $output = curl_exec($ch);
 
         // Check HTTP status code
         if (!curl_errno($ch)) {
