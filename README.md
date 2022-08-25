@@ -1,4 +1,4 @@
-# PHP wrapper pro práci s Ecomail.cz API
+# PHP wrapper for Ecomail API
 
 [![Build Status](https://travis-ci.org/Ecomailcz/ecomail-php.svg?branch=master)](https://travis-ci.org/Ecomailcz/ecomail-php)
 [![Downloads this Month](https://img.shields.io/packagist/dm/ecomailcz/ecomail.svg)](https://packagist.org/packages/ecomailcz/ecomail)
@@ -9,28 +9,27 @@
 composer require ecomailcz/ecomail
 ```
 
-# Použití
+# Usage
 
 ```php
 $ecomail = new Ecomail('API_KEY');
 $ecomail->getListsCollection();
 ```
 
-Pokud bude server vracet větší množství položek v seznamu, může být odpověď rozdělena do více stránek. Počet dostupných
-stránek server posílá v odpovědi v parametru `last_page`. Pro přístup k dalším stránkám nastavte službě požadovanou stránku:
+When there are more results, you will get `last_page` parameter in your response, which you can then use in another request.
 
 ```php
 $ecomail->page(2)->getListsCollection();
 ```
 
 
-API klíč naleznete v nastavení vašeho účtu v sekci integrace.
+You will find your API key in your account in "integrations" section.
 
-# Seznam dostupných metod
+# Available methods
 
-Všechny metody mají návratový typ: `array stdClass string`
+All methods returns: `array stdClass string`
 
-Pro více informací prosím navštivte dokumentaci naší API: https://ecomailczv2.docs.apiary.io/
+For more detailed documentation please visit: https://ecomailczv2.docs.apiary.io/
 
 ### getListsCollection
 
