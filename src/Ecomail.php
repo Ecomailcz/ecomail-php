@@ -399,6 +399,16 @@ class Ecomail
         $url = $this->joinString('tracker/transaction/', $transaction_id);
         return $this->put($url, $data);
     }
+    
+    /**
+     * @param string $transaction_id ID transakce
+     * @return array
+     */
+    public function deleteTransaction($transaction_id)
+    {
+        $url = $this->joinString('tracker/transaction/', $transaction_id, '/delete');
+        return $this->delete($url);
+    }
 
     /**
      * @param array $data Data
