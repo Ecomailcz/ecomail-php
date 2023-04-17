@@ -390,6 +390,17 @@ class Ecomail
 
 
     /**
+     * @param array $data Data
+     * @return array|stdClass|string
+     */
+    public function createBulkTransactions(array $data)
+    {
+        $url = $this->joinString('tracker/transaction-bulk');
+        return $this->post($url, $data);
+    }
+
+
+    /**
      * @param string $transaction_id ID transakce
      * @param array $data Data
      * @return array|stdClass|string
@@ -399,7 +410,7 @@ class Ecomail
         $url = $this->joinString('tracker/transaction/', $transaction_id);
         return $this->put($url, $data);
     }
-    
+
     /**
      * @param string $transaction_id ID transakce
      * @return array

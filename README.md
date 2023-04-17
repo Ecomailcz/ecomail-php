@@ -75,4 +75,6 @@ For more detailed documentation please visit: https://ecomailczv2.docs.apiary.io
 
 ### createNewTransaction
 
+### createBulkTransactions
+
 ### triggerAutomation
