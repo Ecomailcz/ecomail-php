@@ -300,7 +300,7 @@ class Ecomail
      */
     public function listAutomations()
     {
-        $url = $this->joinString('automation');
+        $url = $this->joinString('pipelines');
         return $this->get($url);
     }
 
