@@ -25,6 +25,9 @@ class Ecomail
     /** @var array $query Query parametry pro všechna API volání */
     private $query;
 
+    /** @var string $timeout pro curl dotazy v milisekundách */
+    private $timeout;
+
 
     /**
      * Konstruktor
@@ -46,6 +49,16 @@ class Ecomail
         $this->query = $query;
     }
 
+    /**
+     * Nastaví timeout pro curl dotazy.
+     *
+     * @param int $miliseconds čas v milisekundách
+     * @return void
+     */
+    public function setTimeout(int $miliseconds): void
+    {
+        $this->timeout = $miliseconds;
+    }
 
     // === Modifiers ===
 
@@ -543,6 +556,10 @@ class Ecomail
 
         if (is_array($data)) {
             curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data, $json_options));
+        }
+
+        if ($this->timeout !== null) {
+            curl_setopt($ch, CURLOPT_TIMEOUT_MS, $this->timeout);
         }
 
         curl_setopt(
