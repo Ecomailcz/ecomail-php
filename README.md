@@ -31,50 +31,77 @@ All methods returns: `array stdClass string`
 
 For more detailed documentation please visit: https://ecomailczv2.docs.apiary.io/
 
+## List and Subscriber Management
+
 ### getListsCollection
-
 ### addListCollection
-
 ### showList
-
 ### updateList
-
 ### getSubscribers
-
 ### getSubscriber
-
+### getSubscriberList
 ### addSubscriber
-
 ### removeSubscriber
-
 ### updateSubscriber
-
 ### addSubscriberBulk
+### deleteSubscriber
+### getSubscriberByEmail
+
+## Campaigns
 
 ### listCampaigns
-
 ### addCampaign
-
 ### updateCampaign
-
 ### sendCampaign
+### getCampaignStats
+### getCampaignStatsDetail
+
+## Automation
 
 ### listAutomations
+### triggerAutomation
+### getPipelineStats
+### getPipelineStatsDetail
+
+## Templates
 
 ### createTemplate
 
+## Domains
+
 ### listDomains
-
 ### createDomain
-
 ### deleteDomain
 
-### sendTransactionalEmail
+## Transactional Emails
 
+### sendTransactionalEmail
 ### sendTransactionalTemplate
+### getTransactionalStats
+### getTransactionalStatsDOI
+
+## Transactions
 
 ### createNewTransaction
-
 ### createBulkTransactions
+### updateTransaction
+### deleteTransaction
 
-### triggerAutomation
+## Feeds
+
+### refreshProductFeed
+### refreshDataFeed
+
+## Tracker
+
+### addEvent
+
+## Search
+
+### search
+
+## Discount Coupons
+
+### importCoupons
+### deleteCoupons
+
