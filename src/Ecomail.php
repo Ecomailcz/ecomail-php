@@ -224,6 +224,18 @@ class Ecomail
     }
 
 
+    /**
+     * Get subscriber information by email (global)
+     *
+     * @param string $email Email of the subscriber
+     * @return array|stdClass|string API response
+     */
+    public function getSubscriberByEmail($email)
+    {
+        $url = $this->joinString('subscribers/', $email);
+        return $this->get($url);
+    }
+
     // === Campaigns ===
 
     /**
@@ -292,6 +304,28 @@ class Ecomail
         return $this->get($url);
     }
 
+    /**
+     * Get detailed campaign statistics by campaign ID and optional query parameters.
+     *
+     * @param int $campaignId Campaign ID number
+     * @param array $queryParams Optional query parameters
+     * @return array|stdClass|string API response
+     */
+    public function getCampaignStatsDetail($campaignId, $queryParams = array())
+    {
+        // Construct the URL for the API endpoint
+        $url = $this->joinString('campaigns/', $campaignId, '/stats-detail');
+
+        // Construct the query parameters
+        $query = array();
+        if (!empty($queryParams)) {
+            $query = $queryParams;
+        }
+
+        // Make the API request using the 'get' method
+        return $this->get($url, $query);
+    }
+
 
     // === Automation ===
 
@@ -302,6 +336,57 @@ class Ecomail
     {
         $url = $this->joinString('pipelines');
         return $this->get($url);
+    }
+
+
+    /**
+     * @param string $automation_id ID automatizace
+     * @param array $data Data
+     * @return array|stdClass|string
+     */
+    public function triggerAutomation($automation_id, array $data)
+    {
+        $url = $this->joinString('pipelines/', $automation_id, '/trigger');
+        return $this->post($url, $data);
+    }
+
+
+    /**
+     * Get statistics for an automation pipeline by its ID.
+     *
+     * @param string $pipelineId ID of the automation pipeline
+     * @return array|stdClass|string API response
+     */
+    public function getPipelineStats($pipelineId)
+    {
+        // Construct the URL for the API endpoint
+        $url = $this->joinString('pipelines/', $pipelineId, '/stats');
+        
+        // Make the API request using the 'get' method
+        return $this->get($url);
+    }
+
+
+    /**
+     * Get detailed statistics for an automation pipeline by its ID and optional query parameters.
+     *
+     * @param string $pipelineId ID of the automation pipeline
+     * @param array $queryParams Optional query parameters
+     * @return array|stdClass|string API response
+     */
+    public function getPipelineStatsDetail($pipelineId, $queryParams = array())
+    {
+        // Construct the URL for the API endpoint
+        $url = $this->joinString('pipelines/', $pipelineId, '/stats-detail');
+        
+        // Construct the query parameters
+        $query = array();
+        if (!empty($queryParams)) {
+            $query = $queryParams;
+        }
+
+        // Make the API request using the 'get' method
+        return $this->get($url, $query);
     }
 
 
@@ -376,7 +461,31 @@ class Ecomail
     }
 
 
-    // === Tracker ===
+    /**
+     * Get statistics for transactional emails.
+     *
+     * @return array|stdClass|string API response
+     */
+    public function getTransactionalStats()
+    {
+        $url = $this->joinString('transactional/stats');
+        return $this->get($url);
+    }
+
+
+    /**
+     * Get statistics for double opt-in (DOI) transactional emails.
+     *
+     * @return array|stdClass|string API response
+     */
+    public function getTransactionalStatsDOI()
+    {
+        $url = $this->joinString('transactional/stats/doi');
+        return $this->get($url);
+    }
+
+
+    // === Transactions ===
 
     /**
      * @param array $data Data
@@ -411,6 +520,7 @@ class Ecomail
         return $this->put($url, $data);
     }
 
+
     /**
      * @param string $transaction_id ID transakce
      * @return array
@@ -420,6 +530,36 @@ class Ecomail
         $url = $this->joinString('tracker/transaction/', $transaction_id, '/delete');
         return $this->delete($url);
     }
+
+
+    // === Feeds ===
+
+    /**
+     * Refresh a product feed by its ID.
+     *
+     * @param string $feedId ID of the product feed
+     * @return array|stdClass|string API response
+     */
+    public function refreshProductFeed($feedId)
+    {
+        $url = $this->joinString('feeds/', $feedId, '/refresh');
+        return $this->get($url);
+    }
+
+    /**
+     * Refresh a data feed by its ID.
+     *
+     * @param string $feedId ID of the data feed
+     * @return array|stdClass|string API response
+     */
+    public function refreshDataFeed($feedId)
+    {
+        $url = $this->joinString('data-feeds/', $feedId, '/refresh');
+        return $this->get($url);
+    }
+
+
+    // === Tracker ===
 
     /**
      * @param array $data Data
@@ -432,18 +572,51 @@ class Ecomail
         return $this->post($url, $data);
     }
 
-    // === Automations ===
+    // === Search ===
+
 
     /**
-     * @param string $automation_id ID automatizace
-     * @param array $data Data
-     * @return array|stdClass|string
+     * Perform a search using the specified query.
+     *
+     * @param string $query Search query
+     * @return array|stdClass|string API response
      */
-    public function triggerAutomation($automation_id, array $data)
+    public function search($query)
     {
-        $url = $this->joinString('pipelines/', $automation_id, '/trigger');
+        $url = $this->joinString('search');
+        $data = array('query' => $query);
         return $this->post($url, $data);
     }
+
+
+    // === Discount coupons ===
+
+
+    /**
+     * Import coupons using the provided data.
+     *
+     * @param array $data Data for coupon import
+     * @return array|stdClass|string API response
+     */
+    public function importCoupons(array $data)
+    {
+        $url = $this->joinString('coupons/import');
+        return $this->post($url, $data);
+    }
+
+
+    /**
+     * Delete coupons using the provided data.
+     *
+     * @param array $data Data for coupon deletion
+     * @return array|stdClass|string API response
+     */
+    public function deleteCoupons(array $data)
+    {
+        $url = $this->joinString('coupons/delete');
+        return $this->delete($url, $data);
+    }
+
 
     /**
      * Spojování textu
