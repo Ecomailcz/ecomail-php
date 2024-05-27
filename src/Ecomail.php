@@ -531,6 +531,18 @@ class Ecomail
         return $this->delete($url);
     }
 
+  /**
+   * Delete multiple transactions
+   *
+   * @param array $data Data
+   * @return array|stdClass|string
+   */
+  public function deleteBulkTransactions(array $data)
+  {
+    $url = $this->joinString('tracker/transaction/delete-bulk');
+    return $this->post($url, $data);
+  }
+
 
     // === Feeds ===
 
