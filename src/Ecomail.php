@@ -540,7 +540,7 @@ class Ecomail
   public function deleteBulkTransactions(array $data)
   {
     $url = $this->joinString('tracker/transaction/delete-bulk');
-    return $this->post($url, $data);
+    return $this->delete($url, $data);
   }
 
 
