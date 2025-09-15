@@ -531,6 +531,19 @@ class Ecomail
         return $this->delete($url);
     }
 
+	/**
+	 * @param array $queryParams Optional query parameters
+	 * @return array|stdClass|string
+	 */
+	public function getTransactions(array $queryParams = array())
+	{
+		$url = $this->joinString('tracker/transaction');
+		$query = array();
+		if (!empty($queryParams)) {
+			$query = $queryParams;
+		}
+		return $this->get($url, $query);
+	}
 
     // === Feeds ===
 
